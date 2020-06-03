@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.karan.findout.data.model.Restaurant" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="16dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="6dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image"
+            app:imageUrl="@{restaurant.thumbnailUrl}"
+            android:layout_width="100dp"
+            android:layout_height="75dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/placeholder"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/RoundCornersShape" />
+
+        <TextView
+            android:id="@+id/restaurant_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:ellipsize="end"
+            android:fontFamily="@font/circular_std_medium"
+            android:singleLine="true"
+            android:text="@{restaurant.name}"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/establishment"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/image"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Wat-A-Burger" />
+
+        <TextView
+            app:firstOrBlank="@{restaurant.establishmentsArray}"
+            app:firstOrBlankSecondary="@{restaurant.cuisines.split(`, `)}"
+            android:id="@+id/establishment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_separator"
+            android:drawablePadding="4dp"
+            android:fontFamily="@font/circular_std_book"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toTopOf="@id/rating"
+            app:layout_constraintStart_toStartOf="@id/restaurant_name"
+            app:layout_constraintTop_toBottomOf="@id/restaurant_name"
+            tools:text="Fast Food" />
+
+        <TextView
+            app:firstOrBlank="@{restaurant.timings.split(`, `)}"
+            android:id="@+id/timings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/circular_std_book"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/establishment"
+            app:layout_constraintStart_toEndOf="@id/establishment"
+            tools:text="11:00 AM to 10:00 PM" />
+
+        <TextView
+            android:id="@+id/rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_rating"
+            android:drawablePadding="2dp"
+            android:fontFamily="@font/circular_std_book"
+            android:text="@{restaurant.userRating.rating}"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@id/establishment"
+            app:layout_constraintTop_toBottomOf="@id/establishment"
+            tools:text="4.0" />
+
+        <TextView
+            android:id="@+id/cost_for_two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:drawableStart="@drawable/ic_separator"
+            android:drawablePadding="6dp"
+            android:fontFamily="@font/circular_std_book"
+            android:text="@{String.format(@string/price_placeholder, restaurant.costForTwo)}"
+            android:textColor="?android:textColorSecondary"
+            android:textSize="12sp"
+            app:layout_constraintBaseline_toBaselineOf="@id/rating"
+            app:layout_constraintStart_toEndOf="@id/rating"
+            tools:text="₹200 for two" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
