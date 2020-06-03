@@ -1,3 +1,26 @@
 <resources>
     <string name="app_name">Findout</string>
+    <string name="search">Search</string>
+    <string name="search_for_restaurants">Search for restaurants…</string>
+    <string name="favourites">Favourites</string>
+    <string name="home">Home</string>
+    <string name="sort">Sort</string>
+
+    <string name="added_to_favourites">Added to favourites</string>
+    <string name="removed_from_favourites">Removed from favourites</string>
+    <string name="no_favourites">You don\'t have any favourites added.</string>
+
+    <string name="go_back">Go Back</string>
+    <string name="view_on_zomato">View on zomato</string>
+    <string name="more_photos">More Photos</string>
+    <string name="sort_by">Sort By</string>
+    <string name="rating_high_to_low">Rating: High to Low</string>
+    <string name="cost_low_to_high">Cost: Low to High</string>
+    <string name="cost_high_to_low">Cost: High to Low</string>
+    <string name="apply">Apply</string>
+    <string name="sort_null">Please select the sort criteria to apply</string>
+    <string name="price_placeholder">₹%.0f for two</string>
+    <string name="internet_error">No Internet Connection!</string>
+    <string name="search_restaurant_message">Search for restaurants\nin your area.</string>
+    <string name="no_results">No results found for your search.</string>
 </resources>
