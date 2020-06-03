@@ -23,4 +23,6 @@
     <string name="internet_error">No Internet Connection!</string>
     <string name="search_restaurant_message">Search for restaurants\nin your area.</string>
     <string name="no_results">No results found for your search.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
