@@ -4,7 +4,7 @@ import com.karan.findout.data.model.Header
 import com.karan.findout.data.model.Restaurant
 import com.karan.findout.data.model.SearchResponse
 import com.karan.findout.domain.Repository
-import com.karan.findout.domain.entitiy.ItemModel
+import com.karan.findout.domain.entity.ItemModel
 import com.karan.findout.utils.ApiConstants
 import com.karan.findout.utils.PAGE_SIZE
 import com.karan.findout.utils.Result
