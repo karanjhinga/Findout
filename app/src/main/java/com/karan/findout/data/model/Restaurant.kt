@@ -5,7 +5,7 @@ import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
-import com.karan.findout.domain.entitiy.ItemModel
+import com.karan.findout.domain.entity.ItemModel
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
