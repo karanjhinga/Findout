@@ -1,6 +1,9 @@
 # Findout
 Android application that uses Zomato's API to show restaurants in an area.  
   
+
+![](demo.gif)  
+
 Main Features:  
   
     1. Search for a keyword.  
