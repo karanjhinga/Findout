@@ -1,0 +1,220 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="restaurant"
+            type="com.karan.findout.data.model.Restaurant" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="?colorSurface"
+            app:liftOnScroll="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/back_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:contentDescription="@string/go_back"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:srcCompat="@drawable/ic_back" />
+
+                <CheckBox
+                    android:id="@+id/favourites_cb"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/ic_favourites_selector"
+                    android:button="@null"
+                    android:enabled="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <View
+                    android:id="@+id/favourite"
+                    android:layout_width="56dp"
+                    android:layout_height="match_parent"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/placeholder"
+                    app:imageUrl="@{restaurant.thumbnailUrl}"
+                    app:layout_constraintDimensionRatio="w,4:3"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/RoundCornersShape"
+                    tools:layout_editor_absoluteX="16dp" />
+
+                <TextView
+                    android:id="@+id/restaurant_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="22dp"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/circular_std_medium"
+                    android:text="@{restaurant.name}"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="20sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/image"
+                    tools:text="Wat-A-Burger" />
+
+                <TextView
+                    android:id="@+id/establishment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/circular_std_book"
+                    android:textColor="?android:textColorSecondary"
+                    app:firstOrBlank="@{restaurant.establishmentsArray}"
+                    app:firstOrBlankSecondary="@{restaurant.cuisines.split(`, `)}"
+                    app:layout_constraintStart_toStartOf="@id/restaurant_name"
+                    app:layout_constraintTop_toBottomOf="@id/restaurant_name"
+                    tools:text="Fast Food" />
+
+                <ImageView
+                    android:id="@+id/separator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    app:layout_constraintBottom_toBottomOf="@id/establishment"
+                    app:layout_constraintStart_toEndOf="@id/establishment"
+                    app:layout_constraintTop_toTopOf="@id/establishment"
+                    app:layout_constraintVertical_bias=".6"
+                    app:srcCompat="@drawable/ic_separator"
+                    tools:ignore="ContentDescription" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/zomato_btn"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/circular_std_book"
+                    android:text="@string/view_on_zomato"
+                    android:textAllCaps="false"
+                    android:textColor="@color/colorSecondary"
+                    app:layout_constraintBaseline_toBaselineOf="@id/establishment"
+                    app:layout_constraintStart_toEndOf="@id/separator"
+                    app:rippleColor="@color/colorSecondaryRipple" />
+
+                <TextView
+                    android:id="@+id/rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_rating"
+                    android:drawablePadding="2dp"
+                    android:fontFamily="@font/circular_std_book"
+                    android:text="@{restaurant.userRating.rating}"
+                    android:textColor="?android:textColorSecondary"
+                    app:layout_constraintStart_toStartOf="@id/establishment"
+                    app:layout_constraintTop_toBottomOf="@id/establishment"
+                    tools:text="4.0" />
+
+                <TextView
+                    android:id="@+id/cost_for_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:drawableStart="@drawable/ic_separator"
+                    android:drawablePadding="6dp"
+                    android:fontFamily="@font/circular_std_book"
+                    android:text="@{String.format(@string/price_placeholder, restaurant.costForTwo)}"
+                    android:textColor="?android:textColorSecondary"
+                    app:layout_constraintBaseline_toBaselineOf="@id/rating"
+                    app:layout_constraintStart_toEndOf="@id/rating"
+                    tools:text="₹200 for two" />
+
+                <TextView
+                    android:id="@+id/timings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/circular_std_book"
+                    android:text="@{restaurant.timings}"
+                    android:textColor="?android:textColorSecondary"
+                    app:layout_constraintStart_toStartOf="@id/rating"
+                    app:layout_constraintTop_toBottomOf="@id/rating"
+                    tools:text="11:00 AM to 10:00 PM" />
+
+                <TextView
+                    android:id="@+id/address"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:drawableStart="@drawable/ic_location"
+                    android:drawablePadding="4dp"
+                    android:fontFamily="@font/circular_std_book"
+                    android:lineSpacingExtra="4dp"
+                    android:text="@{restaurant.location.address}"
+                    android:textColor="?android:textColorSecondary"
+                    app:layout_constraintEnd_toEndOf="@id/image"
+                    app:layout_constraintStart_toStartOf="@id/timings"
+                    app:layout_constraintTop_toBottomOf="@id/timings"
+                    tools:text="E-60, Vikas Marg, Laxmi Nagar, New Delhi" />
+
+                <TextView
+                    android:id="@+id/more_photos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/circular_std_medium"
+                    android:text="@string/more_photos"
+                    android:textColor="?android:textColorPrimary"
+                    android:textSize="16sp"
+                    app:layout_constraintStart_toStartOf="@id/address"
+                    app:layout_constraintTop_toBottomOf="@id/address" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/photo_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"
+                    android:orientation="horizontal"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toBottomOf="@id/more_photos"
+                    tools:listitem="@layout/list_item_photo" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
