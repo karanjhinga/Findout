@@ -1,0 +1,197 @@
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.karan.findout.ui.home.HomeViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="?colorSurface"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginEnd="10dp"
+                            android:contentDescription="@string/search"
+                            app:srcCompat="@drawable/ic_search" />
+
+                        <EditText
+                            android:id="@+id/search"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null"
+                            android:fontFamily="@font/circular_std_book"
+                            android:hint="@string/search_for_restaurants"
+                            android:imeOptions="actionSearch"
+                            android:inputType="textNoSuggestions"
+                            android:singleLine="true" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <HorizontalScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:animateLayoutChanges="true"
+                        android:orientation="horizontal">
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/favourite"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/circular_std_book"
+                            android:text="@string/favourites"
+                            android:textColor="?android:textColorSecondary"
+                            app:chipBackgroundColor="?colorSurface"
+                            app:chipCornerRadius="6dp"
+                            app:chipIcon="@drawable/ic_favourite_filled"
+                            app:chipIconSize="14dp"
+                            app:chipMinHeight="35dp"
+                            app:chipStartPadding="8dp"
+                            app:chipStrokeColor="#E4E4E4"
+                            app:chipStrokeWidth="1dp" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/sort_btn"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/circular_std_book"
+                            android:text="@string/sort"
+                            android:textColor="?android:textColorSecondary"
+                            app:chipBackgroundColor="?colorSurface"
+                            app:chipCornerRadius="6dp"
+                            app:chipIcon="@drawable/ic_sort"
+                            app:chipIconSize="14dp"
+                            app:chipMinHeight="35dp"
+                            app:chipStartPadding="8dp"
+                            app:chipStrokeColor="#E4E4E4"
+                            app:chipStrokeWidth="1dp"
+                            app:closeIconTint="?android:textColorTertiary" />
+
+                        <com.google.android.material.chip.Chip
+                            android:id="@+id/cuisine_filter"
+                            style="@style/Widget.MaterialComponents.Chip.Action"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:fontFamily="@font/circular_std_book"
+                            android:textColor="?android:textColorSecondary"
+                            android:visibility="gone"
+                            app:chipBackgroundColor="?colorSurface"
+                            app:chipCornerRadius="6dp"
+                            app:chipMinHeight="35dp"
+                            app:chipStartPadding="8dp"
+                            app:chipStrokeColor="#E4E4E4"
+                            app:chipStrokeWidth="1dp"
+                            app:closeIconTint="?android:textColorTertiary"
+                            app:closeIconVisible="true" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/restaurant_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="?colorSurface"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            tools:listitem="@layout/list_item_restaurant" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/no_data_grp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="no_data_illustration, no_data_message" />
+
+        <ImageView
+            android:id="@+id/no_data_illustration"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/search_illustration"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/app_bar"
+            app:layout_constraintVertical_bias=".2"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/no_data_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/circular_std_medium"
+            android:text="@string/search_restaurant_message"
+            android:textAlignment="center"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/no_data_illustration" />
+
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            goneUnless="@{vm.loading}"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:indeterminate="true"
+            app:layout_constraintBottom_toBottomOf="@id/app_bar"
+            app:layout_constraintTop_toBottomOf="@id/app_bar" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
